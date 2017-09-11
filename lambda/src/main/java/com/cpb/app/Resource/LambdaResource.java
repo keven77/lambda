@@ -32,9 +32,20 @@ public class LambdaResource {
         List<Integer> result = outputStream.map(t->t*t).collect(Collectors.toList());
         return result;
     }
+
+    /**
+     * filter
+     * @param
+     */
+    public List lambda4() {
+        Integer[] arr = {1,2,3,4,5,6};
+        Integer[] result = Arrays.stream(arr).filter(t->t%2==0).toArray(Integer[]::new);
+        List resultList = Arrays.asList(result);
+        return resultList;
+    }
     public static void main(String[] args) {
         LambdaResource lambdaResource = new LambdaResource();
-        //() -> System.out.println("Hello Lambda Expressions");
-        System.out.println(lambdaResource.lambda3());
+        //() -> System.out.println("Hello Lambda Expressions")
+        System.out.println(lambdaResource.lambda4());
     }
 }
