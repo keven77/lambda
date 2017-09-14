@@ -67,14 +67,14 @@ public class LambdaResource {
      */
     public Boolean lambda6() {
         List<Person> person = Lists.newArrayList();
-        person.add(new Person("name"+1,10));
-        person.add(new Person("name"+2,19));
-        person.add(new Person("name"+3,20));
-        person.add(new Person("name"+4,30));
-        boolean isAllAdult = person.stream().allMatch(t -> t.getAge()>18);
-        System.out.println("all are adult?"+isAllAdult);
-        boolean isAnyChild = person.stream().anyMatch(t -> t.getAge()<12);
-        System.out.println("is has child?"+isAnyChild);
+        person.add(new Person("name" + 1, 10));
+        person.add(new Person("name" + 2, 19));
+        person.add(new Person("name" + 3, 20));
+        person.add(new Person("name" + 4, 30));
+        boolean isAllAdult = person.stream().allMatch(t -> t.getAge() > 18);
+        System.out.println("All are adult?" + " " + isAllAdult);
+        boolean isAnyChild = person.stream().anyMatch(t -> t.getAge() < 12);
+        System.out.println("Any child?" + " " + isAnyChild);
         return isAllAdult;
     }
 
@@ -83,7 +83,20 @@ public class LambdaResource {
         Supplier<Integer> random = seed::nextInt;
         Stream.generate(random).limit(3).forEach(System.out::println);
         Stream.iterate(0,t->t+3).limit(10).forEach(t->System.out.println(t));
+        String concat = Stream.of("A", "B", "C", "D").reduce("", String::concat);
+        int sum = Stream.of(1, 2, 3, 4).reduce(0, Integer::sum);
+        sum = Stream.of(1,2,3,4).reduce(Integer::sum).get();
+        System.out.println(concat);
+        Integer i = 3;
+        Integer j = 4;
+        Stream.of(i,j).sorted((a,b)->j.compareTo(i)).forEach(System.out::println);
+
+        Integer[] arr =  {1,2,3};
+        List b = Lists.newArrayList();
+        Optional<Integer> sumOp = Arrays.stream(arr).reduce(Integer::sum);
+        sumOp.ifPresent(b::add);
+        System.out.println(sumOp);
         LambdaResource lambdaResource = new LambdaResource();
-        //System.out.println(lambdaResource.lambda6());
+        System.out.println(lambdaResource.lambda6());
     }
 }
