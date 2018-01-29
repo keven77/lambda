@@ -3,7 +3,10 @@ package com.cpb.app.Dao;
 public class Person {
     public Person(int i, String s) {
     }
-    public Person(String name,int age){}
+    public Person(String name,int age){
+       this.name=name;
+       this.age=age;
+    }
     private String name;
     private int age;
 
